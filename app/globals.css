@@ -89,16 +89,30 @@ body::after{
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 0;
-  opacity: .15;
 
+  /* カードや文字の上にも“気配”だけ乗せる */
+  z-index: 3;
+
+  /* 見えるが主張しすぎない値 */
+  opacity: .11;
+
+  /* 桜の粉・夜露・花弁の欠片 */
   background-image:
-    radial-gradient(circle at 20% 30%, rgba(255,209,220,.6) 0 1px, transparent 2px),
-    radial-gradient(circle at 60% 50%, rgba(255,183,197,.5) 0 1px, transparent 2px),
-    radial-gradient(circle at 80% 70%, rgba(255,209,220,.4) 0 1px, transparent 2px);
+    radial-gradient(circle at 20% 30%, rgba(255,209,220,.75) 0 1.6px, transparent 4px),
+    radial-gradient(circle at 55% 45%, rgba(255,183,197,.55) 0 1.4px, transparent 4px),
+    radial-gradient(circle at 80% 65%, rgba(255,209,220,.50) 0 1.3px, transparent 4px),
+    radial-gradient(circle at 30% 80%, rgba(190,160,230,.35) 0 1.2px, transparent 4px);
 
-  background-size: 320px 320px;
+  /* 密度はやや高め、散りすぎない */
+  background-size: 240px 240px;
+
+  /* 黒に溶けず、光として重なる */
+  mix-blend-mode: screen;
+
+  /* ほんのり柔らかく */
+  filter: blur(.15px);
 }
+
 
 /* ===============================
    Links
