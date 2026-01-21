@@ -286,3 +286,102 @@ a{ color:inherit; }
   gap:12px;
   flex-wrap:wrap;
 }
+
+/* ===== Boot Screen ===== */
+
+.boot {
+  position: relative;
+  min-height: 100vh;
+  background: #05070b;
+  color: #e8edf2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.boot-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(600px 400px at 30% 20%, rgba(255,209,220,.15), transparent 60%),
+    radial-gradient(800px 500px at 70% 60%, rgba(120,90,180,.12), transparent 65%);
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='1' height='1' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.terminal {
+  position: relative;
+  z-index: 2;
+  font-family: ui-monospace, monospace;
+  font-size: 14px;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.t-line {
+  margin: 4px 0;
+}
+
+.t-line.accent {
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.t-line.faint {
+  opacity: 0.6;
+  margin-top: 12px;
+}
+
+.blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ゲージ */
+.lex-gauge {
+  position: absolute;
+  bottom: 14%;
+  width: 320px;
+  z-index: 2;
+}
+
+.lex-label {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-bottom: 6px;
+}
+
+.lex-bar {
+  height: 4px;
+  background: rgba(255,255,255,.15);
+  overflow: hidden;
+}
+
+.lex-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255,209,220,.0),
+    rgba(255,209,220,.8),
+    rgba(255,209,220,.0)
+  );
+  animation: scan 2.4s linear infinite;
+}
+
+@keyframes scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
