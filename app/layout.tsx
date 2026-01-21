@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="footer">
           <div className="footerRow">
             <div>忍桜郷 / Ninoukyo</div>
-            <div className="muted">© {new Date().getFullYear()} Ninoukyo</div>
+            <div className="muted"> {new Date().getFullYear()} Ninoukyo</div>
           </div>
         </footer>
       </body>
