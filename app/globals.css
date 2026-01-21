@@ -1,17 +1,25 @@
 /* app/globals.css */
 :root{
   --bg:#07090c;
-  --fg:#e8edf2;
-  --muted:#9aa7b4;
+  --fg:#f3f6fb;
+  --muted:#a5b1bf;
   --line:#1a222c;
-  --accent:#caa6ff; /* 薄い藤 */
+
+  /* Sakura palette */
+  --accent:#ffd1dc;      /* 淡桃（桜） */
+  --accent2:#ffb7c5;     /* 少し濃い桜 */
+  --accentGlow: rgba(255, 209, 220, .35);
 }
 
 *{ box-sizing:border-box; }
 html,body{ height:100%; }
+
 body{
   margin:0;
-  background: radial-gradient(1200px 600px at 20% 0%, #101827 0%, var(--bg) 55%);
+  background:
+    radial-gradient(900px 600px at 20% 0%, rgba(255, 209, 220, .10) 0%, rgba(7,9,12,0) 60%),
+    radial-gradient(1200px 700px at 80% 10%, rgba(255, 183, 197, .08) 0%, rgba(7,9,12,0) 55%),
+    var(--bg);
   color:var(--fg);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Noto Sans JP", monospace;
   letter-spacing: .2px;
@@ -19,7 +27,7 @@ body{
 
 .topbar{
   position:sticky; top:0;
-  background: rgba(7,9,12,.75);
+  background: rgba(7,9,12,.78);
   backdrop-filter: blur(10px);
   border-bottom:1px solid var(--line);
   z-index:10;
@@ -38,10 +46,13 @@ body{
   text-decoration:none;
   padding:8px 10px;
   border:1px solid var(--line);
-  border-radius:10px;
+  border-radius:12px;
   background: rgba(255,255,255,.02);
 }
-.navItem:hover{ border-color: rgba(202,166,255,.5); }
+.navItem:hover{
+  border-color: rgba(255, 209, 220, .55);
+  box-shadow: 0 0 0 2px var(--accentGlow);
+}
 
 .container{
   max-width:980px;
@@ -49,46 +60,82 @@ body{
   padding:28px 16px 40px;
 }
 
-.kicker{
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:10px;
-}
+.kicker{ color:var(--muted); font-size:12px; margin-bottom:10px; }
 .title{ margin:0 0 10px; font-size:32px; }
-.lead{ margin:0 0 18px; color: #d5dde6; line-height:1.7; }
+.lead{ margin:0 0 18px; color:#dbe3ee; line-height:1.7; }
 
 .card{
   border:1px solid var(--line);
-  border-radius:16px;
+  border-radius:18px;
   padding:16px;
   margin:16px 0;
   background: rgba(255,255,255,.02);
 }
 
-.list{ margin:10px 0 0; color:#d5dde6; line-height:1.8; }
 .muted{ color:var(--muted); }
 
 .grid{
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap:12px;
 }
+
+/* Member card */
 .member{
   border:1px solid var(--line);
-  border-radius:14px;
-  padding:12px;
-  background: rgba(0,0,0,.12);
+  border-radius:18px;
+  padding:14px;
+  background: rgba(0,0,0,.14);
 }
-.memberName{ font-size:16px; margin-bottom:8px; }
+
+.memberHeader{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.memberName{ font-size:16px; margin:0; }
+.memberRuby{ font-size:12px; color:var(--muted); margin-top:4px; }
+
+.badges{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+
 .badge{
   display:inline-block;
   font-size:12px;
-  padding:4px 8px;
+  padding:4px 10px;
   border-radius:999px;
-  border:1px solid rgba(202,166,255,.35);
+  border:1px solid rgba(255, 209, 220, .45);
   color: var(--accent);
-  margin-bottom:8px;
+  background: rgba(255, 209, 220, .06);
+  white-space:nowrap;
 }
+
+.memberMeta{
+  margin:10px 0 0;
+  padding-top:10px;
+  border-top:1px dashed rgba(255,255,255,.08);
+  color:#dbe3ee;
+  line-height:1.75;
+  font-size:13px;
+}
+
+.memberMeta b{ color: var(--accent2); }
+
+.memberBio{
+  margin-top:10px;
+  color:#dbe3ee;
+  line-height:1.8;
+  font-size:13px;
+  white-space: pre-wrap; /* 改行をそのまま活かす */
+}
+
 .footer{
   max-width:980px;
   margin:0 auto;
