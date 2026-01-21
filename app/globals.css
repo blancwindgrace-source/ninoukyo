@@ -1,4 +1,6 @@
-/* app/globals.css */
+/* ===============================
+   Global Variables
+================================ */
 :root{
   --bg:#06070b;
   --fg:#f3f6fb;
@@ -12,31 +14,110 @@
   --ink: rgba(7,9,12,.78);
 }
 
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
+/* ===============================
+   Base Reset
+================================ */
+*{
+  box-sizing:border-box;
+}
 
+html, body{
+  height:100%;
+}
+
+/* ===============================
+   Body : 夜桜 背景本体
+================================ */
 body{
   margin:0;
   color:var(--fg);
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Noto Sans JP", monospace;
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Noto Sans JP",
+    monospace;
   letter-spacing: .2px;
 
-  /* 夜桜の空気感：暗い藍＋桜の淡い光 */
+  /* ===== 夜桜レイヤー構成 ===== */
   background:
-    radial-gradient(900px 600px at 18% 0%, rgba(140, 90, 180, .14) 0%, rgba(6,7,11,0) 60%),
-    radial-gradient(1200px 700px at 80% 10%, rgba(255, 209, 220, .10) 0%, rgba(6,7,11,0) 58%),
-    radial-gradient(900px 650px at 50% 110%, rgba(60, 120, 180, .10) 0%, rgba(6,7,11,0) 55%),
-    var(--bg);
+    /* 桜の霞（全体） */
+    radial-gradient(
+      900px 600px at 15% 10%,
+      rgba(255, 209, 220, .18),
+      rgba(255, 209, 220, 0) 60%
+    ),
+    radial-gradient(
+      800px 520px at 85% 25%,
+      rgba(255, 183, 197, .14),
+      rgba(255, 183, 197, 0) 60%
+    ),
+
+    /* 夜の藍・紫 */
+    radial-gradient(
+      1200px 800px at 50% -10%,
+      rgba(120, 90, 180, .18),
+      rgba(6,7,11,0) 55%
+    ),
+
+    /* 月明かり */
+    radial-gradient(
+      700px 500px at 70% 80%,
+      rgba(180, 200, 255, .10),
+      rgba(6,7,11,0) 60%
+    ),
+
+    /* ベースの闇 */
+    linear-gradient(
+      180deg,
+      #06070b 0%,
+      #07090c 40%,
+      #06070b 100%
+    );
+
+  position: relative;
+  overflow-x: hidden;
 }
 
-a{ color:inherit; }
+/* ===============================
+   全ページ共通：桜の粒子ノイズ
+================================ */
+body::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .08;
 
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,209,220,.6) 0 1px, transparent 2px),
+    radial-gradient(circle at 60% 50%, rgba(255,183,197,.5) 0 1px, transparent 2px),
+    radial-gradient(circle at 80% 70%, rgba(255,209,220,.4) 0 1px, transparent 2px);
+
+  background-size: 320px 320px;
+}
+
+/* ===============================
+   Links
+================================ */
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* ===============================
+   Top Navigation
+================================ */
 .topbar{
-  position:sticky; top:0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   background: var(--ink);
   backdrop-filter: blur(10px);
   border-bottom:1px solid var(--line);
-  z-index:10;
 }
 
 .nav{
@@ -48,229 +129,26 @@ a{ color:inherit; }
 }
 
 .navItem{
-  color:var(--fg);
-  text-decoration:none;
   padding:8px 12px;
-  border:1px solid var(--line);
   border-radius:12px;
+  border:1px solid var(--line);
   background: rgba(255,255,255,.02);
 }
+
 .navItem:hover{
-  border-color: rgba(255, 209, 220, .55);
+  border-color: rgba(255,209,220,.55);
   box-shadow: 0 0 0 2px var(--glow);
 }
 
+/* ===============================
+   Layout
+================================ */
 .container{
   max-width:980px;
   margin:0 auto;
   padding:28px 16px 40px;
-}
-
-.kicker{ color:var(--muted); font-size:12px; margin-bottom:10px; }
-.title{ margin:0 0 10px; font-size:32px; letter-spacing: .6px; }
-.lead{ margin:0 0 18px; color:#dbe3ee; line-height:1.75; }
-
-.card{
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:16px;
-  margin:16px 0;
-  background: rgba(255,255,255,.02);
-}
-
-.sectionTitle{
-  margin:0;
-  font-size:18px;
-}
-
-.divider{
-  height:1px;
-  margin:12px 0 10px;
-  background: linear-gradient(90deg, rgba(255,209,220,.45), rgba(255,255,255,.04));
-}
-
-.list{ margin:10px 0 0; color:#dbe3ee; line-height:1.85; }
-.muted{ color:var(--muted); }
-
-/* HERO */
-.hero{
-  border:1px solid var(--line);
-  border-radius:22px;
-  padding:18px;
-  margin:0 0 18px;
-  background: rgba(255,255,255,.02);
-  position: relative;
-  overflow: hidden;
-}
-
-.heroInner{
   position: relative;
   z-index: 1;
-}
-
-.heroActions{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin: 14px 0 10px;
-}
-
-.btnPrimary, .btnGhost{
-  text-decoration:none;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:10px 14px;
-  border-radius:14px;
-  border:1px solid var(--line);
-}
-
-.btnPrimary{
-  border-color: rgba(255,209,220,.55);
-  background: rgba(255,209,220,.10);
-  box-shadow: 0 0 18px rgba(255,209,220,.10);
-}
-.btnPrimary:hover{
-  box-shadow: 0 0 0 2px var(--glow), 0 0 24px rgba(255,209,220,.12);
-}
-
-.btnGhost{
-  background: rgba(255,255,255,.02);
-}
-.btnGhost:hover{
-  border-color: rgba(255,209,220,.40);
-}
-
-/* 夜桜の薄い光帯 */
-.nightSakura::before{
-  content:"";
-  position:absolute;
-  inset:-40px;
-  background:
-    radial-gradient(420px 220px at 25% 20%, rgba(255,209,220,.18) 0%, rgba(255,209,220,0) 70%),
-    radial-gradient(520px 280px at 80% 30%, rgba(140, 90, 180, .16) 0%, rgba(140, 90, 180, 0) 70%),
-    radial-gradient(520px 320px at 50% 110%, rgba(60, 120, 180, .14) 0%, rgba(60, 120, 180, 0) 65%);
-  filter: blur(2px);
-  opacity: .9;
-}
-
-/* 花びら（CSSのみ・軽量） */
-.petals{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  opacity:.65;
-}
-.petals::before,
-.petals::after{
-  content:"";
-  position:absolute;
-  inset:-40px;
-  background-repeat: repeat;
-  background-size: 260px 260px;
-  /* 花びらっぽい点群（疑似的） */
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(255,209,220,.55) 0 2px, transparent 3px),
-    radial-gradient(circle at 55% 30%, rgba(255,183,197,.45) 0 1.5px, transparent 3px),
-    radial-gradient(circle at 80% 40%, rgba(255,209,220,.35) 0 1.2px, transparent 3px),
-    radial-gradient(circle at 30% 70%, rgba(255,183,197,.30) 0 1.4px, transparent 3px),
-    radial-gradient(circle at 70% 80%, rgba(255,209,220,.25) 0 1.2px, transparent 3px);
-  transform: translateY(-40px);
-  animation: petalsDrift 18s linear infinite;
-  filter: blur(.1px);
-}
-.petals::after{
-  background-size: 340px 340px;
-  opacity: .6;
-  animation-duration: 26s;
-  animation-direction: reverse;
-}
-@keyframes petalsDrift{
-  0%   { transform: translate3d(0,-40px,0) rotate(0deg); }
-  100% { transform: translate3d(-40px,240px,0) rotate(6deg); }
-}
-
-/* chips */
-.heroChips{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top: 10px;
-}
-.chip{
-  font-size:12px;
-  padding:5px 10px;
-  border-radius:999px;
-  border:1px solid rgba(255,209,220,.35);
-  background: rgba(255,209,220,.06);
-  color: var(--accent);
-}
-
-/* Mini hero */
-.miniHero{
-  background: rgba(255,255,255,.02);
-}
-
-/* Member cards */
-.grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap:12px;
-}
-
-.member{
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:14px;
-  background: rgba(0,0,0,.14);
-}
-
-.memberHeader{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-  margin-bottom:10px;
-}
-
-.memberName{ font-size:16px; margin:0; }
-.memberRuby{ font-size:12px; color:var(--muted); margin-top:4px; }
-
-.badges{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  justify-content:flex-end;
-}
-
-.badge{
-  display:inline-block;
-  font-size:12px;
-  padding:4px 10px;
-  border-radius:999px;
-  border:1px solid rgba(255, 209, 220, .45);
-  color: var(--accent);
-  background: rgba(255, 209, 220, .06);
-  white-space:nowrap;
-}
-
-.memberMeta{
-  margin:10px 0 0;
-  padding-top:10px;
-  border-top:1px dashed rgba(255,255,255,.08);
-  color:#dbe3ee;
-  line-height:1.75;
-  font-size:13px;
-}
-
-.memberMeta b{ color: var(--accent2); }
-
-.memberBio{
-  margin-top:10px;
-  color:#dbe3ee;
-  line-height:1.8;
-  font-size:13px;
-  white-space: pre-wrap;
 }
 
 .footer{
@@ -279,109 +157,57 @@ a{ color:inherit; }
   padding:18px 16px 28px;
   border-top:1px solid var(--line);
   color:var(--muted);
-}
-.footerRow{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-/* ===== Boot Screen ===== */
-
-.boot {
   position: relative;
-  min-height: 100vh;
-  background: #05070b;
-  color: #e8edf2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  cursor: pointer;
+  z-index: 1;
 }
 
-.boot-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(600px 400px at 30% 20%, rgba(255,209,220,.15), transparent 60%),
-    radial-gradient(800px 500px at 70% 60%, rgba(120,90,180,.12), transparent 65%);
+/* ===============================
+   Text Utilities
+================================ */
+.kicker{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:10px;
 }
 
-.noise {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='1' height='1' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E");
-  opacity: 0.15;
-  pointer-events: none;
+.title{
+  margin:0 0 10px;
+  font-size:32px;
+  letter-spacing:.6px;
 }
 
-.terminal {
+.lead{
+  margin:0 0 18px;
+  color:#dbe3ee;
+  line-height:1.75;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+/* ===============================
+   Cards
+================================ */
+.card{
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:16px;
+  margin:16px 0;
+  background: rgba(255,255,255,.02);
   position: relative;
-  z-index: 2;
-  font-family: ui-monospace, monospace;
-  font-size: 14px;
-  line-height: 1.7;
-  max-width: 520px;
+  z-index: 1;
 }
 
-.t-line {
-  margin: 4px 0;
-}
-
-.t-line.accent {
-  color: var(--accent);
-  letter-spacing: 1px;
-}
-
-.t-line.faint {
-  opacity: 0.6;
-  margin-top: 12px;
-}
-
-.blink {
-  animation: blink 1s steps(1) infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
-/* ゲージ */
-.lex-gauge {
-  position: absolute;
-  bottom: 14%;
-  width: 320px;
-  z-index: 2;
-}
-
-.lex-label {
-  font-size: 12px;
-  opacity: 0.7;
-  margin-bottom: 6px;
-}
-
-.lex-bar {
-  height: 4px;
-  background: rgba(255,255,255,.15);
-  overflow: hidden;
-}
-
-.lex-fill {
-  display: block;
-  height: 100%;
-  width: 100%;
+/* ===============================
+   Divider
+================================ */
+.divider{
+  height:1px;
+  margin:12px 0 10px;
   background: linear-gradient(
     90deg,
-    rgba(255,209,220,.0),
-    rgba(255,209,220,.8),
-    rgba(255,209,220,.0)
+    rgba(255,209,220,.45),
+    rgba(255,255,255,.04)
   );
-  animation: scan 2.4s linear infinite;
-}
-
-@keyframes scan {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
 }
