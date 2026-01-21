@@ -4,9 +4,11 @@ import { members } from "@/data/members";
 export default function MembersPage() {
   return (
     <>
-      <div className="kicker">ROSTER // 所属メンバー</div>
-      <h1 className="title">所属メンバー一覧</h1>
-      <p className="lead">忍桜郷を彩る住人たちのプロフィールです。</p>
+      <section className="hero miniHero">
+        <div className="kicker">ROSTER // 所属メンバー</div>
+        <h1 className="title">所属メンバー一覧</h1>
+        <p className="lead">忍桜郷を彩る住人たちのプロフィールです。</p>
+      </section>
 
       <section className="card">
         <div className="grid">
