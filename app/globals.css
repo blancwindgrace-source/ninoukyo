@@ -90,7 +90,7 @@ body::after{
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: .08;
+  opacity: .15;
 
   background-image:
     radial-gradient(circle at 20% 30%, rgba(255,209,220,.6) 0 1px, transparent 2px),
