@@ -47,7 +47,7 @@ export default function Home() {
           <li>舞台演目 / 歓談 → 見送り</li>
         </ol>
         <p className="muted">
-          ※当日の運用（抽選/受付方法/注意事項）は告知ポストに準拠
+          ※当日の運用（抽選/受付方法）は告知ポストに準拠
         </p>
       </section>
     </>
