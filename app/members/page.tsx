@@ -1,5 +1,5 @@
 // app/members/page.tsx
-import { members } from "@/data/members";
+import { members } from "../../data/members";
 
 export default function MembersPage() {
   return (
